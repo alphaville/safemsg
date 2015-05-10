@@ -31,47 +31,55 @@
       <section id="main_content" class="inner">
 
 
-
+<!-- FEATURES -->
 <h3><a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h3>
 <p>Safemsg is a secure message exchange system which can be used to exchange passwords and 
 other confidential data. SafeMessage has the following features:</p>
-<br/>
 <ul>
 <li>Is web-based and there it no need to install anything on your system,</li>
-<li>Messages <b>are encrypted client-side</b>, so the server has no information about the original message,</li>
-<li>A <b>REST interface</b> allows users to store message on a remote server,</li>
-<li>Once a message is read, it is <b>permanently removed from the server's database</b>,</li>
+<li>Messages <strong>are encrypted client-side</strong>, so the server has no information about the original message,</li>
+<li>A <strong>REST interface</strong> allows users to store message on a remote server,</li>
+<li>Once a message is read, it is <strong>permanently removed from the server's database</strong>,</li>
 <li>The whole system is completely open-source.</li>
 </ul>
 
 
+
+
+<!-- USE CASES -->
 <h3><a id="use-cases" class="anchor" href="#use-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use cases</h3>
 <p>Let's say that peer A needs to communicate a password, 
 say 'abcd' to peer B. This is how SafeMessage works. 
 First, peer A creates a SafeMessage:</p>
-
 <ul>
     <li>Peer A encrypts the message locally using a key X,</li>
     <li>Peer A POSTs the encrypted message to the server which responds with the URI of the created message,</li>
     <li>Peer A sends the key and the URI of the message to peer B,</li>
 </ul>
-
+<div style="text-align: center">
+  <figure>
+   <img src="images/sendMessage.png" alt="Send a message (Use case UC1)" style="width:500px">
+   <figcaption><em>Fig. 1. The SafeMessage Use Case UC1 - Creation of a SafeMessage resource.</em></figcaption>
+  </figure>
+</div>
 <p>Then, peer B fetches and decrypts the message: </p>
-
 <ul>
     <li>Peer B fetches the message using its URI and</li>
     <li>The message is permanently destroyed on the remote server,</li>
     <li>Peer B decrypts the message locally.</li>
 </ul>
-
-
+<div style="text-align: center">
+  <figure>
+    <img src="images/readMessage.png" alt="Read a message (Use case UC2)" style="width:300px">
+    <figcaption><em>Fig. 2. The SafeMessage Use Case UC2 - Retrieval of a SafeMessage resource.</em></figcaption>
+  </figure>
+</div>
 <p>In case someone intercepts the communication of A and B and reads the message, 
 then, when peer B attempts to read the message, they will realize that the password 
 has been stolen and proper action can be taken. However, even in that case, the 
 only information that has been revealed by the server is the encrypted message 
 and not the actual one (which is not known to the server). 
 Necessary conditions for very high security are:<p>
-
 <ul>
     <li>The key is used once and is then discarded (one-time patch),</li>
     <li>The key is random,</li>
@@ -79,7 +87,110 @@ Necessary conditions for very high security are:<p>
        the two peers have to be extra cautious when exchanging the keys.</li>
 </ul>
 
-      </section>
+
+
+
+<!-- USING THE API -->
+<h3><a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the API</h3>
+
+<p>To create a safe message, the client applies a POST as follows:</p>
+
+<pre><code>HTTP/1.1 POST /register.php</code></pre>
+
+<p>specifying the parameter <code>msg</code> which is the encrypted message.</p>
+
+<p>Possible status codes are:</p>
+
+<ul>
+    <li><em>200</em> - Success, the message was stored and its ID can be found in the response body,</li>
+    <li><em>400</em> - Bad request. Most probably because no message was specified,</li>
+    <li><em>500</em> - Internal server error explained in the response body.</li>
+</ul>
+
+<p>Here is how the response of this request looks like:</p>
+
+<pre><code>{
+    "response": {
+        "id": "24cb14d1-922f-425f-9fad-55626ef26be7-vuQ4pn9q",
+        "created": 1419044972
+    }
+}</code></pre>
+
+<p>in this JSON document, the field <code>id</code> refers to the identifier 
+of the created message, while <code>created</code> is the creation timestamp 
+(server-side) of the created message.</p>
+
+<p>The following parameters can be specified for additional security features:</p>
+
+
+<ul>
+    <li><em>msg</em>, the message to be created,</li>
+    <li><em>bind_ip[]</em>, reveal the message only if peer B accesses if from one of the registered IPs.
+    Any attempt to access the message from some other IP will destroy it. Notice that there are numerous ways for someone to fake an IP address, so this is not a very reliable security measure.</li>
+</ul>
+
+
+<p>To retrieve the message, the client applies a GET as follows:</p>
+
+<pre><code>HTTP/1.1 GET /retrieve.php?id={id}</code></pre>
+
+<p>where <code>{id}</code> is the identifier of the message which the client wants to retrieve.</p>
+
+<p>HTTP status codes are:</p>
+
+<ul>
+    <li><em>200</em>, success: the (encrypted) message is returned in the response body,</li>
+    <li><em>404</em>: the identifier of the message is wrong, or the message was previously deleted.
+    No information is provided as of whether the requested identifier was previously registered.</li>
+    <li><em>500</em>: internal server error, <em>e.g.</em>, database connection error. </li>
+</ul>
+
+
+
+
+
+<!-- USER INTERFACE (UI) -->
+<h3><a id="ui" class="anchor" href="#ui" aria-hidden="true"><span class="octicon octicon-link"></span></a>User interface</h3>
+<p>A web-based user interface is provided in which Javascript is used 
+in a second security layer where messages are encrypted locally (client-side) 
+and are POSTed to the server in an encrypted form. The client who creates the 
+message is given a link (URL) of the generated encrypted message and a key 
+that is used to decrypt the message. Peer A needs to give to peer B both 
+the link and the key to access the message.</p>
+
+<p>Two access points are provided for this reason:<p>
+
+<ul>
+    <li><strong>/create.php</strong>: where a new message can be created,</li>
+    <li><strong>/see.php?id={id}</strong>: where clients can access messages provided that they have the key.</li>
+</ul>
+
+
+<div style="text-align: center">
+  <figure>
+   <img src="images/UI1.png" alt="Send a message (Use case UC1)" style="width:400px">
+   <figcaption><em>Fig. 3a. Step 1: Peer A creates a SafeMessage to be sent to peer B.</em></figcaption>
+  </figure>
+</div>
+
+
+<div style="text-align: center">
+  <figure>
+   <img src="images/UI2.png" alt="Send a message (Use case UC1)" style="width:400px">
+   <figcaption><em>Fig. 3b. Step 2: The message is encrypted locally and then POSTed to the SafeMessage server. A link is acquired and a key is displayed to peer A which is not sent to the server. Peer A can choose to immediately destroy the message they just created if they wish.</em></figcaption>
+  </figure>
+</div>
+
+
+
+<div style="text-align: center">
+  <figure>
+   <img src="images/UI3.png" alt="Send a message (Use case UC1)" style="width:400px">
+   <figcaption><em>Fig. 3c. Step 3: Once peer B is given the link and the key, they are prompted to provide their key to read the message. Once peer B accesses this web page, the message is gone on the server.</em></figcaption>
+  </figure>
+</div>
+
+	</section>
     </div>
 
     <!-- FOOTER  -->
