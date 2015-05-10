@@ -3,7 +3,7 @@ SafeMessage
 
 SafeMessage - Secure web-based message exchange system
 
-For documentation, please, browse to http://alphaville.github.io/safemsg/
+For documentation, please, browse to http://alphaville.github.io/safemsg
 
 Access Safemsg at http://www.jaqpot.org/safemsg
 
