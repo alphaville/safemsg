@@ -42,8 +42,7 @@ other confidential data. SafeMessage has the following features:</p>
 <li>Once a message is read, it is <strong>permanently removed from the server's database</strong>,</li>
 <li>The whole system is completely open-source.</li>
 </ul>
-
-
+<p>A running instance of Safemsg is available at <a href="http://www.jaqpot.org/safemsg">www.jaqpot.org/safemsg</a>
 
 
 <!-- USE CASES -->
@@ -81,7 +80,7 @@ only information that has been revealed by the server is the encrypted message
 and not the actual one (which is not known to the server). 
 Necessary conditions for very high security are:<p>
 <ul>
-    <li>The key is used once and is then discarded (one-time patch),</li>
+    <li>The key is used once and is then discarded (<a href="http://en.wikipedia.org/wiki/One-time_pad">one-time pad</a>),</li>
     <li>The key is random,</li>
     <li>Nobody is able to acquire access to the key, <em>i.e.</em>, 
        the two peers have to be extra cautious when exchanging the keys.</li>
