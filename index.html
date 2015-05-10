@@ -35,14 +35,50 @@
 
 
 <h3><a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h3>
-Safemsg is a secure message exchange system which can be used to exchange passwords and 
-other confidential data. SafeMessage has the following features: 
+<p>Safemsg is a secure message exchange system which can be used to exchange passwords and 
+other confidential data. SafeMessage has the following features:</p>
+<br/>
 <ul>
 <li>Is web-based and there it no need to install anything on your system,</li>
-<li>Message are encrypted client-side, so the server has no information about the original message,</li>
-<li>A REST interface allows users to store message on a remote server,</li>
-<li>Once a message is read, it is permanently removed from the server's database,</li>
+<li>Messages <b>are encrypted client-side</b>, so the server has no information about the original message,</li>
+<li>A <b>REST interface</b> allows users to store message on a remote server,</li>
+<li>Once a message is read, it is <b>permanently removed from the server's database</b>,</li>
 <li>The whole system is completely open-source.</li>
+</ul>
+
+
+<h3><a id="use-cases" class="anchor" href="#use-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use cases</h3>
+<p>Let's say that peer A needs to communicate a password, 
+say 'abcd' to peer B. This is how SafeMessage works. 
+First, peer A creates a SafeMessage:</p>
+
+<ul>
+    <li>Peer A encrypts the message locally using a key X,</li>
+    <li>Peer A POSTs the encrypted message to the server which responds with the URI of the created message,</li>
+    <li>Peer A sends the key and the URI of the message to peer B,</li>
+</ul>
+
+<p>Then, peer B fetches and decrypts the message: </p>
+
+<ul>
+    <li>Peer B fetches the message using its URI and</li>
+    <li>The message is permanently destroyed on the remote server,</li>
+    <li>Peer B decrypts the message locally.</li>
+</ul>
+
+
+<p>In case someone intercepts the communication of A and B and reads the message, 
+then, when peer B attempts to read the message, they will realize that the password 
+has been stolen and proper action can be taken. However, even in that case, the 
+only information that has been revealed by the server is the encrypted message 
+and not the actual one (which is not known to the server). 
+Necessary conditions for very high security are:<p>
+
+<ul>
+    <li>The key is used once and is then discarded (one-time patch),</li>
+    <li>The key is random,</li>
+    <li>Nobody is able to acquire access to the key, <em>i.e.</em>, 
+       the two peers have to be extra cautious when exchanging the keys.</li>
 </ul>
 
 
