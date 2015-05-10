@@ -31,6 +31,38 @@
       <section id="main_content" class="inner">
 
 
+<p><em><strong>Safemsg:</strong> secure message exchange system with self-destructing messages and client-side encryption.</em></p>
+
+<!-- INTRO -->
+<h3><a id="intro" class="anchor" href="#intro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is Safemsg the best choice for security?</h3>
+<p>
+So, why is Safemsg better that other secure message exchange systems?
+Let us give you two good reasons why trusting a system based on "self-destruction"
+may be a wrong choise:
+</p>
+<ul>
+	<li>In conventional secure message exchange systems, messages are dispatched (over SSL) to the server that
+	stores them until they are requested, when they are forever deleted from the server and after that moment
+	cannot be accessed again. <strong>What happens ib someone hacks into the database of the server?</strong>
+	That's right, they will acquire access to your messages.</li>
+	<li>What evidence do you have so as to trust a secure message exchange system? 
+	Is it likely that somebody eavedrops into your conversations? Is it possible that
+	your messages are logged server-side? <strong>So long as messages are stored unencrypted in the
+	server's databse, one may malevolently peek into them...</strong></li>
+</ul>
+
+<p>So, why choose Safemsg?<p>
+
+<p>With Safemsg, <strong>messages are encrypted client-side</strong> and the server has
+zero-knowledge about the message. Furthermore, Safemsg is open source, so anybody can
+inspect the code and point out to possible security holes. You are also free to 
+download and install Safemsg on a server of yours so long as you attribute the 
+original software and you don't make profit out of it (Safemsg is licensed with 
+the <a href="https://github.com/alphaville/safemsg/blob/master/LICENSE">GNU GPL v2</a> licence).</p>
+
+
+
+
 <!-- FEATURES -->
 <h3><a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h3>
 <p>Safemsg is a secure message exchange system which can be used to exchange passwords and 
@@ -46,7 +78,7 @@ other confidential data. SafeMessage has the following features:</p>
 
 
 <!-- USE CASES -->
-<h3><a id="use-cases" class="anchor" href="#use-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use cases</h3>
+<h3><a id="use-cases" class="anchor" href="#use-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>How Safemsg works...</h3>
 <p>Let's say that peer A needs to communicate a password, 
 say 'abcd' to peer B. This is how SafeMessage works. 
 First, peer A creates a SafeMessage:</p>
@@ -188,6 +220,16 @@ the link and the key to access the message.</p>
    <figcaption><em>Fig. 3c. Step 3: Once peer B is given the link and the key, they are prompted to provide their key to read the message. Once peer B accesses this web page, the message is gone on the server.</em></figcaption>
   </figure>
 </div>
+
+
+<!-- USER INTERFACE (UI) -->
+<h3><a id="links" class="anchor" href="#links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Links</h3>
+The source code can be found on <a href="https://github.com/alphaville/safemsg">github</a>,
+a running instance of Safemsg is available at <a href="http://www.jaqpot.org/safemsg">www.jaqpot.org/safemsg</a>. Please, 
+submit any bugs or feature requests <a href="https://github.com/alphaville/safemsg">here</a>. 
+Safemsg maintained by <a href="https://github.com/alphaville">alphaville</a> - follow me
+on <a href="https://twitter.com/isToxic">twitter</a> (<code>@isToxic</code>).
+
 
 	</section>
     </div>
