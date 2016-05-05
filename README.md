@@ -5,7 +5,7 @@ SafeMessage - Secure web-based message exchange system
 
 For documentation, please, browse to http://alphaville.github.io/safemsg
 
-Access Safemsg at http://www.jaqpot.org/safemsg
+Access Safemsg at http://opentox.ntua.gr/safemsg
 
 Dependencies:
 * Requires PHP version 5.4 or higher
