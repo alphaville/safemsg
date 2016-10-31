@@ -31,10 +31,12 @@
       <section id="main_content" class="inner">
 
 
-<p><em><strong>Safemsg:</strong> secure message exchange system with self-destructing messages and client-side encryption.</em></p>
+<p><em><strong>Safemsg:</strong> secure message exchange system with self-destructing 
+messages and <strong>client-side encryption</strong>.</em></p>
 
 <!-- INTRO -->
-<h3><a id="intro" class="anchor" href="#intro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is Safemsg the best choice for security?</h3>
+<h3><a id="intro" class="anchor" href="#intro" aria-hidden="true">
+<span class="octicon octicon-link"></span></a>Why is Safemsg the best choice for security?</h3>
 <p>
 So, why is Safemsg better that other secure message exchange systems?
 Let us give you two good reasons why trusting a system based on "self-destruction"
@@ -43,7 +45,7 @@ may be a wrong choise:
 <ul>
 	<li>In conventional secure message exchange systems, messages are dispatched (over SSL) to the server that
 	stores them until they are requested, when they are forever deleted from the server and after that moment
-	cannot be accessed again. <strong>What happens ib someone hacks into the database of the server?</strong>
+	cannot be accessed again. <strong>But what if someone hacks into the database of the server?</strong>
 	That's right, they will acquire access to your messages.</li>
 	<li>What evidence do you have so as to trust a secure message exchange system? 
 	Is it likely that somebody eavedrops into your conversations? Is it possible that
@@ -54,7 +56,7 @@ may be a wrong choise:
 <p>So, why choose Safemsg?<p>
 
 <p>With Safemsg, <strong>messages are encrypted client-side</strong> and the server has
-zero-knowledge about the message. Furthermore, Safemsg is open source, so anybody can
+<strong>zero-knowledge</strong> about the message. Furthermore, Safemsg is open source, so anybody can
 inspect the code and point out to possible security holes. You are also free to 
 download and install Safemsg on a server of yours so long as you attribute the 
 original software and you don't make profit out of it (Safemsg is licensed with 
@@ -112,7 +114,8 @@ only information that has been revealed by the server is the encrypted message
 and not the actual one (which is not known to the server). 
 Necessary conditions for very high security are:<p>
 <ul>
-    <li>The key is used once and is then discarded (<a href="http://en.wikipedia.org/wiki/One-time_pad">one-time pad</a>),</li>
+    <li>The key is used once and is then discarded 
+	    (<a href="http://en.wikipedia.org/wiki/One-time_pad">one-time pad</a>),</li>
     <li>The key is random,</li>
     <li>Nobody is able to acquire access to the key, <em>i.e.</em>, 
        the two peers have to be extra cautious when exchanging the keys.</li>
@@ -181,7 +184,8 @@ of the created message, while <code>created</code> is the creation timestamp
 
 
 <!-- USER INTERFACE (UI) -->
-<h3><a id="ui" class="anchor" href="#ui" aria-hidden="true"><span class="octicon octicon-link"></span></a>User interface</h3>
+<h3><a id="ui" class="anchor" href="#ui" aria-hidden="true">
+<span class="octicon octicon-link"></span></a>User interface</h3>
 <p>A web-based user interface is provided in which Javascript is used 
 in a second security layer where messages are encrypted locally (client-side) 
 and are POSTed to the server in an encrypted form. The client who creates the 
@@ -233,16 +237,24 @@ on <a href="https://twitter.com/isToxic">twitter</a> (<code>@isToxic</code>).
 
 
 <!-- LIMITATIONS -->
-<h3><a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitations of Safemsg</h3>
+<h3><a id="limitations" class="anchor" href="#limitations" aria-hidden="true">
+<span class="octicon octicon-link"></span></a>Limitations of Safemsg</h3>
 <p>Safemsg provides a high level of security against various types of threats. However, you should mind that:</p>
 <ul>
 	<li>Safemsg does not provide any sort of 
 	<a href="http://en.wikipedia.org/wiki/Anonymity#Anonymity_on_the_Internet">anonymity</a> 
-	and your identity can be traced unless you use some anonymisation system like <a href="https://www.torproject.org/">Tor</a>.
+	and your identity can be traced unless you use some anonymisation system like 
+	<a href="https://www.torproject.org/">Tor</a>.
 	Safemsg does not in any way mask or hide your IP address,</li>
-	<li>Safemsg cannot protect you from <a href="http://en.wikipedia.org/wiki/Keystroke_logging">key loggers</a> and other <a href="http://en.wikipedia.org/wiki/Malware">malware</a>,</li>
-	<li>Safemsg cannot protect you from <a href="http://en.wikipedia.org/wiki/Data_scraping#Screen_scraping">screen scraping</a> (people standing behind you, hidden cameras etc),</li>
-	<li>Safemsg cannot protect your from untrustworthy peers. Exchange confidential information only with people you can trust.</li>
+	<li>Safemsg implements a symmetric encryption system where the two peers must share
+	the same key, so both peers have to take good care of the key.</li>
+	<li>Safemsg cannot protect you from <a href="http://en.wikipedia.org/wiki/Keystroke_logging">key loggers</a> 
+	and other <a href="http://en.wikipedia.org/wiki/Malware">malware</a>,</li>
+	<li>Safemsg cannot protect you from 
+	<a href="http://en.wikipedia.org/wiki/Data_scraping#Screen_scraping">screen scraping</a> 
+	(people standing behind you, hidden cameras etc),</li>
+	<li>Safemsg cannot protect your from untrustworthy peers. Exchange confidential information only with 
+	people you can trust.</li>
 </ul>
 	</section>
     </div>
