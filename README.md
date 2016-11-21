@@ -12,3 +12,5 @@ Dependencies:
 * [XORCipher.js](https://gist.github.com/sukima/5613286)
 * XORCipher.js depends on [underscore.js](http://underscorejs.org/)
 * [jQuery.js](http://jquery.com/)
+
+This project is managed by [Pantelis Sopasakis](http://alphaville.github.io).
