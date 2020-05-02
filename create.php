@@ -37,6 +37,7 @@
 		document.getElementById("hidden_secret").style.display = 'none';
 		var rnds = randomString(32);
 		client_text_msg = document.getElementById("client_text").value;		
+		client_text_msg = client_text_msg.replace(/(?:\r\n|\r|\n)/g, '<br>');
 		encrypted_msg = XORCipher.encode(rnds, client_text_msg);
 		document.getElementById("keyholder").innerHTML=rnds;
 		$.post( "register.php", { msg:  encrypted_msg} ).done(function( data ) {
