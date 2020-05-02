@@ -18,7 +18,7 @@ if (!$is_id || ($is_id && $_GET["id"]==null)) {
 $id = urldecode($_GET["id"]);					# ID in the URL ?id={id}
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=safemsg",
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname",
     		$username, $password);											# Create connection
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

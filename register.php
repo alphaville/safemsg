@@ -29,7 +29,7 @@ $safemsg=$_POST['msg'];             # retrieve the message to be encoded
 $id=generateRandomString(8);
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=safemsg", 
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", 
         $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
