@@ -37,7 +37,10 @@
 		}
 		function decryptAndDisplay(){
 			key = document.getElementById("client_key").value;
-			alert(XORCipher.decode(key, enc_msg));
+            document.getElementById("message").style.display = 'block';
+            document.getElementById("found").style.display = 'none';
+            show_message = document.getElementById("message");
+            show_message.innerHTML = XORCipher.decode(key, enc_msg);
 			key = null;
 			enc_msg = null;
 		}
@@ -57,6 +60,7 @@
 				<input type="submit" value="Submit" onclick="decryptAndDisplay();">
 			</div>
 		</div>	
+		<div style="display: none;" id="message"></div>
 		<div id="goback">
 			<p>Or <a href="/safemsg/create.php"><b>create</b></a> a new message!</p>
 		</div>	
